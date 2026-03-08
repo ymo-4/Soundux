@@ -6,6 +6,8 @@ Added features:
 * `--disable-uinput` to disable push to talk
 * dbus hotkeys (see [dbus](#dbus))
 
+Removed X11 support as i don't bother with trying to make it to work with both X11 and Wayland
+
 ## dbus
 Use your compositor settings (hyprland, kwin, etc) to run:
 ```
