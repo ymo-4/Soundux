@@ -1,5 +1,6 @@
 #pragma once
 #include <atomic>
+#include <sdbus-c++/sdbus-c++.h>
 #include <string>
 #include <thread>
 #include <vector>
@@ -11,6 +12,8 @@ namespace Soundux
         class Hotkeys
         {
             std::thread listener;
+            std::unique_ptr<sdbus::IConnection> dbus_conn;
+            int fd = 0;
             std::atomic<bool> kill = false;
             std::atomic<bool> notify = false;
 

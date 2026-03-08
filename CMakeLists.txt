@@ -39,6 +39,7 @@ if (WIN32)
     target_compile_options(soundux PRIVATE /W4)
 else()
     add_executable(soundux ${src})
+    # target_compile_options(soundux PRIVATE -g -gdwarf-4)
 
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         message(STATUS "Enabling warning and error flags for debug build")
@@ -52,6 +53,7 @@ target_include_directories(soundux SYSTEM PRIVATE "lib/miniaudio")
 target_include_directories(soundux SYSTEM PRIVATE "lib/semver/include")
 target_include_directories(soundux SYSTEM PRIVATE "lib/fancypp/include")
 target_include_directories(soundux SYSTEM PRIVATE "lib/json/single_include")
+# target_include_directories(soundux SYSTEM PRIVATE "lib/sdbus-cpp/include")
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -80,6 +82,7 @@ add_subdirectory(lib/backward-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(lib/traypp EXCLUDE_FROM_ALL)
 add_subdirectory(lib/guardpp)
 add_subdirectory(lib/lockpp)
+# add_subdirectory(lib/sdbus-cpp EXCLUDE_FROM_ALL)
 
 add_backward(soundux)
 
@@ -93,7 +96,7 @@ set(HTTPLIB_REQUIRE_OPENSSL ON)
 add_subdirectory(lib/cpp-httplib EXCLUDE_FROM_ALL)
 target_include_directories(soundux SYSTEM PRIVATE "lib/cpp-httplib")
 
-target_link_libraries(soundux PRIVATE webview nfd tiny-process-library tray guardpp httplib lockpp)
+target_link_libraries(soundux PRIVATE sdbus-c++ webview nfd tiny-process-library tray guardpp httplib lockpp)
 
 if (${EMBED_PATH} STREQUAL "OFF")
     message("Web-content will not be embedded") 

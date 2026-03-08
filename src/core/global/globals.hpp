@@ -42,5 +42,7 @@ namespace Soundux
         /* Allows for fast & easy sound access, is populated on start up */
         inline sxl::var_guard<std::map<std::uint32_t, std::reference_wrapper<Objects::Sound>>> gSounds;
         inline sxl::var_guard<std::map<std::uint32_t, std::reference_wrapper<Objects::Sound>>> gFavorites;
+
+        inline bool disable_uinput = false;
     } // namespace Globals
 } // namespace Soundux

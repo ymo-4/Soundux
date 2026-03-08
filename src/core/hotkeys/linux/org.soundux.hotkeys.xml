@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<node name="/">
+  <interface name="org.soundux.hotkeys">
+
+    <method name="emit">
+        <arg type="ai" name="keys" direction="in" />
+    </method>
+
+    <method name="emit_name">
+        <arg type="as" name="keys" direction="in" />
+    </method>
+
+  </interface>
+</node>
