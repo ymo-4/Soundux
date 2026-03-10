@@ -22,7 +22,7 @@ dbus-send --print-reply \
 but it is basically useless everywhere but for push to talk
 * you can change `emit_name` to `emit`, `array:string:...` to `array:int32:6` so you can use not
 only key names but key ids too, useless tbh
-* change `KEY_5` by your key. You can see all keys in `src/core/hotkeys/linux/input-event-codes.h`
+* change `KEY_5` to your key. You can see all keys in `src/core/hotkeys/linux/input-event-codes.h`
 
 # Notes
 To build:
