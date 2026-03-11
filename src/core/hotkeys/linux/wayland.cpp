@@ -42,12 +42,12 @@ protected:
 
     void emit_name(const std::vector<std::string> &keys) override {
         size_t sz = keys.size();
-        int* _keys = reinterpret_cast<int*>(malloc(sz * sizeof(int)));
+        int* i_keys = reinterpret_cast<int*>(malloc(sz * sizeof(int)));
 
         for (int i = 0; i < sz; i++) {
             auto it = event_codes_si.find(keys[i]);
             if (it != event_codes_si.end()) {
-                _keys[i] = it->second;
+                i_keys[i] = it->second;
             } else {
                 std::cerr << "[dbus: emit_name] Cannot find '" << keys[i] << "'" << '\n';
             }
@@ -55,17 +55,18 @@ protected:
 
 
         for (int i = 0; i < sz; i++) {
-            hotkeys->onKeyDown(_keys[i]);
+            hotkeys->onKeyDown(i_keys[i]);
         }
 
         for (int i = 0; i < sz; i++) {
-            hotkeys->onKeyUp(_keys[i]);
+            hotkeys->onKeyUp(i_keys[i]);
         }
+
+        free(i_keys);
     }
 };
 
 void uinput_emit(int fd, int type, int code, int val) {
-    KEY_A;
     struct input_event ie;
     ie.type = type;
     ie.code = code;
