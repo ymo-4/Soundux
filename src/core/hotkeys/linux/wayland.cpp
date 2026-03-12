@@ -46,11 +46,12 @@ protected:
 
         for (int i = 0; i < sz; i++) {
             auto it = event_codes_si.find(keys[i]);
-            if (it != event_codes_si.end()) {
-                i_keys[i] = it->second;
-            } else {
+            if (it == event_codes_si.end()) {
                 std::cerr << "[dbus: emit_name] Cannot find '" << keys[i] << "'" << '\n';
+                return;
             }
+
+            i_keys[i] = it->second;
         }
 
 
@@ -144,7 +145,7 @@ namespace Soundux::Objects
     void Hotkeys::pressKeys(const std::vector<int> &keys)
     {
         if (fd <= 0) {
-            std::cerr << "/dev/uinput not initialized, pressKeys disabled" << '\n';
+            std::cerr << "uinput not initialized, pressKeys disabled" << '\n';
             return;
         }
 
